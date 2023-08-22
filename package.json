@@ -1,0 +1,15 @@
+{
+  "name": "chatbotpge",
+  "version": "1.0.0",
+  "description": "whatsapp chatbot para PGE\u001b[D\u001b[D\u001b[Da PGE",
+  "main": "program.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node program.js"
+  },
+  "author": "Micael Cruz",
+  "license": "ISC",
+  "dependencies": {
+    "venom-bot": "^5.0.17"
+  }
+}

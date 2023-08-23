@@ -5,7 +5,7 @@
   "main": "program.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node program.js"
+    "start": "node src/program.js"
   },
   "author": "Micael Cruz",
   "license": "ISC",

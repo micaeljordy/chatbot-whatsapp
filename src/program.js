@@ -1,6 +1,7 @@
 const venom = require('venom-bot');
 const tratarNumero = require('./services/tratarNumero.js')
-const responderMensagem = require('./services/responderMensagem.js')
+const GerenciadorMensagem = require('./classes/gerenciadorMensagem.js')
+const listMenu = require('./whatsapp_models/listMenu.js')
 
 venom
   .create({session: 'teste'},
@@ -43,16 +44,23 @@ venom
   });
 
 function start(client) {
+  const gm = new GerenciadorMensagem()
   client.onMessage((message) => {
     if (message.isGroupMsg === false) {
-      client
-        .sendText(tratarNumero.tratar(message.from), responderMensagem.lerResponder(message.body))
-        .then((result) => {
-          console.log('Result: ', result); //return object success
-        })
-        .catch((erro) => {
-          console.error('Error when sending: ', erro); //return object error
-        });
+      if(!gm.listaTelefonica.has(message.from)){
+        client
+          .sendText(tratarNumero.tratar(message.from), gm.lerGuardarNome(message))
+          .then((result) => {
+            console.log('Result: ', result); //return object success
+          })
+          .catch((erro) => {
+            console.error('Error when sending: ', erro); //return object error
+          });
+      }
+      else {
+
+      }
+
     }
   });
 }

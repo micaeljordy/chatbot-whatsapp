@@ -1,6 +1,6 @@
 class StringBuilder {
     constructor() {
-        this.strings = [];
+        this.strings = new Array();
     }
 
     append(str) {

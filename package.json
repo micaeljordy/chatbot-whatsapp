@@ -10,6 +10,6 @@
   "author": "Micael Cruz",
   "license": "ISC",
   "dependencies": {
-    "venom-bot": "^5.0.17"
+    "venom-bot": "^5.0.19"
   }
 }

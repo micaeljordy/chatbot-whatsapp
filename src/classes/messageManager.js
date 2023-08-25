@@ -1,5 +1,3 @@
-//const StringBuilder = require('./stringBuider.js');
-const confirmButtons = require('../consts/buttons/confirmButtons.js')
 const confirmMessageService = require('../services/confirmMessageService.js')
 class MessageManager{
     constructor() {
@@ -16,7 +14,7 @@ class MessageManager{
 
         if(!this.phoneBook.has(message.from) && 
         (!confirmMessageService.confirm(message.body) && !confirmMessageService.deny(message.body))){
-            return {text:'Tudo bem! Te chamarei de ' + message.body + ', confirmado?', buttons: confirmButtons.buttons, description: "Teste", title: "Teste", subtitle: "teste"}
+            return {text:'Tudo bem! Te chamarei de ' + message.body + ', confirmado?'}
         }
         else if(!this.phoneBook.has(message.from) && confirmMessageService.deny(message.body)) {
             return {text:'Então como devo chamá-lo(a)?'}

@@ -2,6 +2,8 @@ const venom = require('venom-bot');
 const numberTreatment = require('./services/numberTreatmenteService.js')
 const MessageManager = require('./classes/messageManager.js')
 const listMenu = require('./consts/lists/listMenu.js')
+const readNumbers = require('./services/readNumbersService.js')
+const template = require('./consts/messages/concurso.js')
 
 venom
   .create({session: 'teste'},
@@ -45,32 +47,39 @@ venom
 
 function start(client) {
   const mm = new MessageManager()
-  client.onMessage((message) => {
-    if (message.isGroupMsg === false) {
-      if(!mm.phoneBook.has(message.from)){
-        let response = mm.registerNameRoutine(message)
-        client
-          .sendText(numberTreatment.tratar(message.from), response.text)
-          .then((result) => {
-            console.log('Result: ', result); //return object success
-          })
-          .catch((erro) => {
-            console.error('Error when sending: ', erro); //return object error
-          });
-          // if('buttons' in response){
-          //   client.sendButtons(numberTreatment.tratar(message.from), response.title, response.subtitle, response.buttons)
-          //   .then((result2) => {
-          //     console.log('Result: ', result2); //return object success
-          //   })
-          //   .catch((erro2) => {
-          //     console.error('Error when sending: ', erro2); //return object error
-          //   });
-          // }
-      }
-      else {
+  // client.onMessage((message) => {
+  //   if (message.isGroupMsg === false) {
+  //     if(!mm.phoneBook.has(message.from)){
+  //       let response = mm.registerNameRoutine(message)
+  //       client
+  //         .sendText(numberTreatment.tratar(message.from), response.text)
+  //         .then((result) => {
+  //           console.log('Result: ', result); //return object success
+  //         })
+  //         .catch((erro) => {
+  //           console.error('Error when sending: ', erro); //return object error
+  //         });
+  //     }
+  //     else {
 
-      }
+  //     }
 
+  //   }
+  // });
+  readNumbers('C:/Users/micael.cruz/Desktop/whatsappApi/projeto chatbot/numeros.txt', (err, content) => {
+    if (err) {
+      console.error(err);
+      return;
     }
+    content.forEach((number, i = 0) => {
+      client.sendText(number, template.message)
+              .then((result) => {
+                i = i + 1
+                console.log('Mensagens enviadas: ', i); //return object success
+              })
+              .catch((erro) => {
+                console.error('Error when sending: ', erro); //return object error
+              });
+    });
   });
 }

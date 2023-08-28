@@ -3,7 +3,7 @@ const numberTreatment = require('./services/numberTreatmenteService.js')
 const MessageManager = require('./classes/messageManager.js')
 const listMenu = require('./consts/lists/listMenu.js')
 const readNumbers = require('./services/readNumbersService.js')
-const template = require('./consts/messages/concurso.js')
+const template = require('./consts/messages/example.js')
 
 venom
   .create({session: 'teste'},

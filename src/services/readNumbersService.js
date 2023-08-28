@@ -6,7 +6,7 @@ function readNumbers(path, callback){
             callback('Ocorreu um erro ao ler o arquivo:', err);
             return;
           }
-        const extractedNumbers = data.split('\n').map(row => row.replace(/[^0-9]/g, '')).map(row => row).map(row => row.slice(0,2) === '55' ? row : '55' + row).filter(row => row.length > 8);
+        const extractedNumbers = data.split('\n').map(row => row.replace(/[^0-9]/g, '')).map(row => row.slice(0,2) === '55' ? row : '55' + row).filter(row => row.length > 8);
         
         const numbers = new Array()
         extractedNumbers.forEach(row => {
